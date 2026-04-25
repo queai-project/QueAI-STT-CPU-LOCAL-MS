@@ -1,0 +1,13 @@
+{
+  "name": "stt_local_cpu",
+  "display_name": "STT Local CPU",
+  "ui_entry_point": "/api/stt_local_cpu/ui",
+  "configuration_entry_point": "/api/stt_local_cpu/config/",
+  "documentation_entry_point": "/api/stt_local_cpu/docs",
+  "healthcheck_entry_point": "/api/stt_local_cpu/health",
+  "version": "1.0.0",
+  "logo": "stt_logo.png",
+  "description": "Módulo STT oficial para QueAI. Transcripción local de audio a texto usando faster-whisper en CPU, con cola de tareas, progreso en vivo y resultados descargables.",
+  "author": "Juana Iris Perez && Alejandro Fonseca",
+  "license": "MIT"
+}

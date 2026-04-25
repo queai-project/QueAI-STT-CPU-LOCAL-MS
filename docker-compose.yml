@@ -1,0 +1,42 @@
+services:
+  plugin-stt_local_cpu:
+    build: .
+    container_name: plugin_stt_local_cpu_service
+    networks:
+      - odoo_network
+    volumes:
+      - stt_models:/code/models
+      - stt_runtime:/code/runtime
+      - stt_logs:/code/logs
+    environment:
+      - ENVIRONMENT=production
+
+      # Modelo básico ya incluido en la imagen base.
+      - STT_DEFAULT_MODEL=tiny
+
+      # Configuración técnica interna.
+      - STT_DEVICE=cpu
+      - STT_DEFAULT_COMPUTE_TYPE=int8
+      - STT_DEFAULT_CPU_THREADS=4
+      - STT_DEFAULT_NUM_WORKERS=1
+      - STT_WORKERS=1
+      - STT_MAX_UPLOAD_MB=500
+
+      # Opciones internas no visibles en la UI.
+      - STT_DEFAULT_VAD_FILTER=true
+      - STT_DEFAULT_WORD_TIMESTAMPS=false
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plugin-stt_local_cpu.rule=PathPrefix(`/api/stt_local_cpu`)"
+      - "traefik.http.routers.plugin-stt_local_cpu.entrypoints=web"
+      - "traefik.http.services.plugin-stt_local_cpu.loadbalancer.server.port=8000"
+
+volumes:
+  stt_models:
+  stt_runtime:
+  stt_logs:
+
+networks:
+  odoo_network:
+    external: true
