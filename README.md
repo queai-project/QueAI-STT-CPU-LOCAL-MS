@@ -47,7 +47,6 @@ El módulo acepta modelos compatibles con `faster-whisper`, por ejemplo:
 - `distil-small.en`
 - `distil-medium.en`
 - `distil-large-v3`
-```
 
 Para CPU local equilibrado se recomienda empezar con:
 
