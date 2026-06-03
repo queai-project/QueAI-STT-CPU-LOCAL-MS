@@ -3,7 +3,7 @@ services:
     build: .
     container_name: plugin_stt_local_cpu_service
     networks:
-      - odoo_network
+      - queai_network
     volumes:
       - stt_models:/code/models
       - stt_runtime:/code/runtime
@@ -38,5 +38,5 @@ volumes:
   stt_logs:
 
 networks:
-  odoo_network:
+  queai_network:
     external: true
