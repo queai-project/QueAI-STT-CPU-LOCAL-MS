@@ -4,27 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>STT Local CPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        /* Design system QueAI (ver docs/DESIGN_TOKENS.md del kernel).
+           Mantenemos los nombres locales del STT (--primary, --panel, --muted...)
+           para no tocar el millar de selectores; sólo cambiamos los VALORES
+           para alinearnos con el flat minimalista del kernel. */
         :root {
-            --bg-1: #070b12;
-            --bg-2: #0d1420;
-            --panel: rgba(15, 22, 34, 0.92);
-            --panel-2: rgba(22, 31, 48, 0.98);
-            --panel-3: rgba(255, 255, 255, 0.035);
-            --line: rgba(255, 255, 255, 0.08);
-            --line-strong: rgba(255, 255, 255, 0.14);
-            --text: #f5f8fc;
-            --muted: #95a4bc;
-            --soft: #dce7f6;
-            --primary: #e53935;
+            --bg-1: #141414;
+            --bg-2: #1c1c1c;
+            --panel: #1c1c1c;
+            --panel-2: #262626;
+            --panel-3: rgba(255,255,255,0.03);
+            --line: #2a2a2a;
+            --line-strong: #383838;
+            --text: #eaeae6;
+            --muted: #909090;
+            --soft: #b0b0b0;
+            --primary: #e8180c;
             --primary-2: #ff6b6b;
-            --ok: #20c997;
-            --warn: #ffb020;
+            --ok: #4ade80;
+            --warn: #f5c042;
             --danger: #ff5d5d;
-            --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
-            --radius-xl: 28px;
-            --radius-lg: 18px;
-            --radius-md: 14px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
+            --radius-xl: 14px;
+            --radius-lg: 14px;
+            --radius-md: 12px;
         }
 
         * { box-sizing: border-box; }
@@ -33,12 +40,11 @@
         body {
             margin: 0;
             min-height: 100%;
-            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            font-family: 'DM Sans', system-ui, 'Segoe UI', Arial, sans-serif;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
             color: var(--text);
-            background:
-                radial-gradient(circle at top left, rgba(229, 57, 53, 0.18), transparent 24%),
-                radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 22%),
-                linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+            background: var(--bg-1);
         }
 
         body { padding: 22px; }
@@ -54,8 +60,6 @@
             background: var(--panel);
             border: 1px solid var(--line);
             border-radius: var(--radius-xl);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(14px);
         }
 
         .hero {
