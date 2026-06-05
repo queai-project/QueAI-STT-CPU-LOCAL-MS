@@ -43,9 +43,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    openapi_url=settings.OPENAPI_PATH if settings.is_dev else None,
-    docs_url=settings.DOCS_PATH if settings.is_dev else None,
-    redoc_url=settings.REDOC_PATH if settings.is_dev else None,
+    # docs/redoc/openapi siempre expuestos. El manifest del plugin declara
+    # documentation_entry_point como pública y el Hub de QueAI tiene un botón
+    # "Docs" que apunta aquí — gatear por ENV rompía ese contrato cuando el
+    # compose lanzaba el plugin en producción.
+    openapi_url=settings.OPENAPI_PATH,
+    docs_url=settings.DOCS_PATH,
+    redoc_url=settings.REDOC_PATH,
     lifespan=lifespan,
 )
 
