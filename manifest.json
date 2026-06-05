@@ -9,5 +9,6 @@
   "logo": "logo.png",
   "description": "Módulo STT oficial para QueAI. Transcripción local de audio a texto usando faster-whisper en CPU, con cola de tareas, progreso en vivo y resultados descargables.",
   "author": "Juana Iris Perez && Alejandro Fonseca",
-  "license": "MIT"
+  "license": "MIT",
+  "description_en": "Official STT module for QueAI. Local audio-to-text transcription using faster-whisper on CPU, with job queue, live progress and downloadable results."
 }
