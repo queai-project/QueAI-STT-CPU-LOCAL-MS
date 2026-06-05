@@ -9,7 +9,6 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 
@@ -45,28 +44,11 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     # OpenAPI siempre on (lo declara el manifest del plugin).
-    # docs_url=None porque servimos Swagger UI con un theme dark abajo,
-    # alineado con el resto del kernel.
     openapi_url=settings.OPENAPI_PATH,
-    docs_url=None,
+    docs_url=settings.DOCS_PATH,
     redoc_url=settings.REDOC_PATH,
     lifespan=lifespan,
 )
-
-
-@app.get(settings.DOCS_PATH, include_in_schema=False)
-async def docs_dark():
-    # Swagger UI con paleta dark (SwaggerDark.css), coherente con el resto
-    # del kernel — el theme claro por defecto chocaba con el fondo #141414
-    # del Hub cuando se abre /docs por iframe.
-    return get_swagger_ui_html(
-        openapi_url=settings.OPENAPI_PATH,
-        title=f"{settings.PROJECT_NAME} — API",
-        swagger_css_url=(
-            "https://cdn.jsdelivr.net/gh/Amoenus/SwaggerDark@v1.0.0/"
-            "SwaggerDark.css"
-        ),
-    )
 
 
 app.add_middleware(
